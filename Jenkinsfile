@@ -26,6 +26,13 @@ pipeline {
     stage('QA Test') {
       parallel {
         stage('UI Test') {
+          agent {
+            node {
+              label ''
+              customWorkspace 'workspace/webuiautomation'
+            }
+
+          }
           steps {
             echo 'UI Test'
             git(url: 'https://github.com/gokul1027/WebAppUiAutomation.git', branch: 'master')
@@ -35,6 +42,13 @@ pipeline {
         }
 
         stage('API test') {
+          agent {
+            node {
+              label ''
+              customWorkspace 'workspace/webapiautomation'
+            }
+
+          }
           steps {
             echo 'API Test'
             git(url: 'https://github.com/gokul1027/WebAppApiAutomation.git', branch: 'master')
