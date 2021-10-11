@@ -23,7 +23,7 @@ pipeline {
       }
     }
 
-    stage('UI Test') {
+    stage('QA Test') {
       parallel {
         stage('UI Test') {
           steps {
