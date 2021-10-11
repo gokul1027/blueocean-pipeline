@@ -28,7 +28,7 @@ pipeline {
         stage('UI Test') {
           agent {
             node {
-              label ''
+              label 'hpslave'
               customWorkspace 'workspace/webuiautomation'
             }
 
@@ -44,8 +44,8 @@ pipeline {
         stage('API test') {
           agent {
             node {
-              label ''
               customWorkspace 'workspace/webapiautomation'
+              label 'API test'
             }
 
           }
