@@ -37,7 +37,13 @@ pipeline {
         }
 
         stage('QA API Build') {
-          agent any
+          agent {
+            node {
+              customWorkspace 'C:/Users/gokul/Desktop/ubuntu/jenkins/'
+              label 'hpslave'
+            }
+
+          }
           steps {
             echo 'API Test'
             git(url: 'https://github.com/gokul1027/WebAppApiAutomation.git', branch: 'master')
