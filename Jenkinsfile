@@ -29,7 +29,7 @@ pipeline {
           agent {
             node {
               label 'hpslave'
-              customWorkspace 'c:/Users/gokul/Desktop/ubuntu/jenkins/webuiautomation'
+              customWorkspace 'C:/Users/gokul/Desktop/ubuntu/jenkins/webuiautomation'
             }
 
           }
