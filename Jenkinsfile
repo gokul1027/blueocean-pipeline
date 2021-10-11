@@ -11,7 +11,9 @@ pipeline {
     stage('Dev Code Build') {
       steps {
         echo 'Dev Code Build'
-        bat 'bat \'start /min stopApp.bat\'             bat \'mvn install\'             bat \'set JENKINS_NODE_COOKIE=dontKILLME && start /min startApp.bat\''
+        bat 'start /min stopApp.bat'
+        bat 'mvn install'
+        bat 'set JENKINS_NODE_COOKIE=dontKILLME && start /min startApp.bat'
       }
     }
 
@@ -27,8 +29,8 @@ pipeline {
           steps {
             echo 'UI Test'
             git(url: 'https://github.com/gokul1027/WebAppUiAutomation.git', branch: 'master')
-            sleep 10
-            bat 'bat \'mvn test\''
+            sleep(time: 10, unit: 'SECONDS')
+            bat 'mvn test'
           }
         }
 
@@ -36,8 +38,8 @@ pipeline {
           steps {
             echo 'API Test'
             git(url: 'https://github.com/gokul1027/WebAppApiAutomation.git', branch: 'master')
-            sleep 10
-            bat 'bat \'mvn test\''
+            sleep(time: 10, unit: 'SECONDS')
+            bat 'mvn test'
           }
         }
 
@@ -47,6 +49,7 @@ pipeline {
     stage('QA Certify') {
       steps {
         echo 'QA Certified'
+        input(message: 'Do you like to certify?', id: 'Certify', ok: 'Yes')
       }
     }
 
@@ -59,6 +62,7 @@ pipeline {
     stage('UAT Certify') {
       steps {
         echo 'UAT Certify'
+        input(message: 'Do you like to certify?', id: 'Certify', ok: 'Yes')
       }
     }
 
